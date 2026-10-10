@@ -1,1 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Berries Army</title>
+<meta name="description" content="Hey, I'm Berries Army. I make videos on YouTube and build things on GitHub. Catch my latest video and what I've been up to lately.">
+<meta name="theme-color" content="#B0125A">
+<link rel="icon" href="https://github.com/BerriesArmy.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to the good stuff</a>
 
+<header class="top">
+  <a class="brand" href="#top">
+    <img src="https://github.com/BerriesArmy.png" alt="My GitHub profile picture" width="44" height="44">
+    <span>Berries Army</span>
+  </a>
+  <nav aria-label="Main">
+    <a href="#video">Latest video</a>
+    <a href="#projects">Projects</a>
+    <a href="#activity">Activity</a>
+    <a href="#hello">Say hi</a>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero wrap" id="top">
+    <div class="hero-copy">
+      <h1>Hey, I'm Berries Army.</h1>
+      <p class="lead">I make videos on YouTube and build things on GitHub. This is my little corner of the internet, and it keeps itself fresh, so whenever you stop by you'll see my newest upload and whatever I've been tinkering with lately.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://www.youtube.com/@berries-army" target="_blank" rel="noopener">Watch on YouTube</a>
+        <a class="btn btn-ghost" href="https://github.com/BerriesArmy" target="_blank" rel="noopener">See my GitHub</a>
+      </div>
+    </div>
+
+    <div class="hero-video" id="video">
+      <div class="frame">
+        <iframe id="player" src="https://www.youtube-nocookie.com/embed/videoseries?list=UUL0dv_9VZHO6UhVw_gQVh4Q" title="My latest YouTube video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <div class="video-meta">
+        <h2 id="video-title">My newest upload is playing up there</h2>
+        <p id="video-date">Grabbing the details for you.</p>
+        <a id="video-link" class="text-link" href="https://www.youtube.com/@berries-army/videos" target="_blank" rel="noopener">Browse all my videos</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What I'm working on right now</h2>
+        <p>These are the projects I've touched most recently. The list pulls straight from GitHub, so it changes whenever I do.</p>
+      </div>
+      <ul class="projects" id="project-list" aria-live="polite">
+        <li class="note">Pulling my latest projects from GitHub.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band band-tint" id="activity">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What I did lately</h2>
+        <p>A quick look at my most recent moves on GitHub, newest first.</p>
+      </div>
+      <ul class="feed" id="feed" aria-live="polite">
+        <li class="note">Checking what I've been up to.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band hello" id="hello">
+    <div class="wrap">
+      <h2>Come say hi</h2>
+      <p class="lead">If you like what you see, subscribing or following is the easiest way to keep up with me. And if you have an idea, a question, or just want to chat about something I made, drop a comment on a video or open an issue on one of my repos. I read them all.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://www.youtube.com/@berries-army?sub_confirmation=1" target="_blank" rel="noopener">Subscribe on YouTube</a>
+        <a class="btn btn-light" href="https://github.com/BerriesArmy" target="_blank" rel="noopener">Follow on GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <p>Made by me and hosted on GitHub Pages.</p>
+    <p id="year"></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var GH_USER = 'BerriesArmy';
+  var CHANNEL_ID = 'UCL0dv_9VZHO6UhVw_gQVh4Q';
+  var FEED_URL = 'https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID;
+
+  document.getElementById('year').textContent = 'Copyright ' + new Date().getFullYear() + ' Berries Army';
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
+  }
+
+  function plural(n, word) {
+    return n + ' ' + word + (n === 1 ? '' : 's');
+  }
+
+  function timeAgo(dateString) {
+    var seconds = Math.max(0, Math.floor((Date.now() - new Date(dateString).getTime()) / 1000));
+    if (seconds < 60) return 'just now';
+    var minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return plural(minutes, 'minute') + ' ago';
+    var hours = Math.floor(minutes / 60);
+    if (hours < 24) return plural(hours, 'hour') + ' ago';
+    var days = Math.floor(hours / 24);
+    if (days < 30) return plural(days, 'day') + ' ago';
+    var months = Math.floor(days / 30);
+    if (months < 12) return plural(months, 'month') + ' ago';
+    return plural(Math.floor(days / 365), 'year') + ' ago';
+  }
+
+  function capitalize(word) {
+    return word ? word.charAt(0).toUpperCase() + word.slice(1) : '';
+  }
+
+  function firstLine(text, max) {
+    var line = String(text || '').split('\n')[0].trim();
+    return line.length > max ? line.slice(0, max - 3).trim() + '...' : line;
+  }
+
+  function getJSON(url) {
+    return fetch(url, { headers: { Accept: 'application/json' } }).then(function (res) {
+      if (!res.ok) {
+        var err = new Error('Request failed');
+        err.status = res.status;
+        throw err;
+      }
+      return res.json();
+    });
+  }
+
+  function showMessage(list, message) {
+    list.innerHTML = '';
+    list.appendChild(make('li', 'note', message));
+  }
+
+  function loadVideo() {
+    var url = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(FEED_URL);
+    getJSON(url).then(function (data) {
+      var item = data && data.items && data.items[0];
+      if (!item) throw new Error('No videos found');
+      var id = '';
+      try {
+        id = new URL(item.link).searchParams.get('v') || '';
+      } catch (e) {
+        id = '';
+      }
+      if (!id && item.guid) id = String(item.guid).split(':').pop();
+      if (id) {
+        document.getElementById('player').src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id);
+      }
+      document.getElementById('video-title').textContent = item.title;
+      document.getElementById('video-date').textContent = 'Posted ' + timeAgo(item.pubDate.replace(' ', 'T') + 'Z');
+      var link = document.getElementById('video-link');
+      link.href = item.link;
+      link.textContent = 'Watch it on YouTube';
+    }).catch(function () {
+      document.getElementById('video-date').textContent = 'I couldn\'t grab the title this time, but the player still shows my newest upload.';
+    });
+  }
+
+  function loadProjects() {
+    var list = document.getElementById('project-list');
+    var url = 'https://api.github.com/users/' + GH_USER + '/repos?sort=pushed&direction=desc&per_page=30';
+    getJSON(url).then(function (repos) {
+      var picks = repos.filter(function (repo) { return !repo.fork; }).slice(0, 6);
+      if (!picks.length) {
+        showMessage(list, 'Nothing public here yet, but something is probably cooking. Check back soon.');
+        return;
+      }
+      list.innerHTML = '';
+      picks.forEach(function (repo) {
+        var item = make('li', 'project');
+        var main = make('div', 'project-main');
+        var title = make('h3');
+        var link = make('a', '', repo.name);
+        link.href = repo.html_url;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        title.appendChild(link);
+        main.appendChild(title);
+        main.appendChild(make('p', '', repo.description || "No description yet. I'm still figuring this one out."));
+        var meta = make('div', 'project-meta');
+        if (repo.language) meta.appendChild(make('span', 'tag', repo.language));
+        meta.appendChild(make('span', '', 'Updated ' + timeAgo(repo.pushed_at)));
+        if (repo.stargazers_count > 0) meta.appendChild(make('span', '', plural(repo.stargazers_count, 'star')));
+        item.appendChild(main);
+        item.appendChild(meta);
+        list.appendChild(item);
+      });
+    }).catch(function (err) {
+      if (err.status === 403) {
+        showMessage(list, 'GitHub is asking me to slow down for a bit. Try again in a little while, or head to my GitHub profile to see everything.');
+      } else {
+        showMessage(list, 'I couldn\'t load my projects just now. Head over to my GitHub profile to see them all.');
+      }
+    });
+  }
+
+  function describe(ev) {
+    var p = ev.payload || {};
+    switch (ev.type) {
+      case 'PushEvent': {
+        var count = p.size || (p.commits && p.commits.length) || 1;
+        var last = p.commits && p.commits.length ? p.commits[p.commits.length - 1].message : '';
+        return { text: 'Pushed ' + plural(count, 'update') + ' to ', detail: firstLine(last, 90) };
+      }
+      case 'CreateEvent':
+        if (p.ref_type === 'repository') return { text: 'Started a brand new repo called ', detail: firstLine(p.description, 90) };
+        return { text: 'Created a new ' + (p.ref_type || 'branch') + ' in ', detail: '' };
+      case 'DeleteEvent':
+        return { text: 'Cleaned up a ' + (p.ref_type || 'branch') + ' in ', detail: '' };
+      case 'WatchEvent':
+        return { text: 'Starred ', detail: '' };
+      case 'ForkEvent':
+        return { text: 'Forked ', detail: '' };
+      case 'IssuesEvent':
+        return { text: capitalize(p.action) + ' an issue in ', detail: firstLine(p.issue && p.issue.title, 90) };
+      case 'IssueCommentEvent':
+        return { text: 'Commented on an issue in ', detail: firstLine(p.issue && p.issue.title, 90) };
+      case 'PullRequestEvent': {
+        var merged = p.pull_request && p.pull_request.merged;
+        return {
+          text: (merged ? 'Merged' : capitalize(p.action)) + ' a pull request in ',
+          detail: firstLine(p.pull_request && p.pull_request.title, 90)
+        };
+      }
+      case 'PullRequestReviewEvent':
+        return { text: 'Reviewed a pull request in ', detail: firstLine(p.pull_request && p.pull_request.title, 90) };
+      case 'ReleaseEvent':
+        return { text: 'Published a release in ', detail: firstLine(p.release && (p.release.name || p.release.tag_name), 90) };
+      case 'PublicEvent':
+        return { text: 'Made this repo public: ', detail: '' };
+      default:
+        return { text: 'Did a little something in ', detail: '' };
+    }
+  }
+
+  function loadActivity() {
+    var list = document.getElementById('feed');
+    var url = 'https://api.github.com/users/' + GH_USER + '/events/public?per_page=30';
+    getJSON(url).then(function (events) {
+      var recent = events.slice(0, 8);
+      if (!recent.length) {
+        showMessage(list, "It's been quiet on GitHub lately. Check back soon, I'm probably planning something.");
+        return;
+      }
+      list.innerHTML = '';
+      recent.forEach(function (ev) {
+        var info = describe(ev);
+        var item = make('li', 'feed-item');
+        var line = make('p', 'feed-line', info.text);
+        var repo = make('a', '', ev.repo.name.replace(GH_USER + '/', ''));
+        repo.href = 'https://github.com/' + ev.repo.name;
+        repo.target = '_blank';
+        repo.rel = 'noopener';
+        line.appendChild(repo);
+        item.appendChild(line);
+        if (info.detail) item.appendChild(make('p', 'feed-detail', info.detail));
+        var time = make('time', 'feed-time', timeAgo(ev.created_at));
+        time.dateTime = ev.created_at;
+        item.appendChild(time);
+        list.appendChild(item);
+      });
+    }).catch(function (err) {
+      if (err.status === 403) {
+        showMessage(list, 'GitHub is asking me to slow down for a bit. Try again in a little while, or head to my GitHub profile to see everything.');
+      } else {
+        showMessage(list, 'I couldn\'t load my recent activity just now. My GitHub profile has the full story.');
+      }
+    });
+  }
+
+  loadVideo();
+  loadProjects();
+  loadActivity();
+})();
+</script>
+</body>
+</html>
