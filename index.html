@@ -5,20 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Berries Army</title>
 <meta name="description" content="Hey, I'm Berries Army. I make videos on YouTube and build things on GitHub. Catch my latest video and what I've been up to lately.">
-<meta name="theme-color" content="#B0125A">
+<meta name="theme-color" content="#120816">
 <link rel="icon" href="https://github.com/BerriesArmy.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-  --bg: #f8f3f6;
-  --ink: #2b1233;
-  --berry: #b0125a;
-  --blue: #3c3da6;
-  --soft: #eadceb;
-  --muted: #6b5873;
-  --line: #d9c6dc;
+  --bg: #120816;
+  --ink: #f7eef8;
+  --berry: #ff3385;
+  --blue: #7c7eff;
+  --soft: #24132b;
+  --muted: #b89dbf;
+  --line: #3b2046;
   --display: "Bricolage Grotesque", "Trebuchet MS", "Segoe UI", sans-serif;
   --body: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
 }
@@ -64,7 +64,7 @@ a {
   left: 16px;
   top: -80px;
   background: var(--ink);
-  color: #fff;
+  color: #120816;
   padding: 10px 16px;
   border-radius: 8px;
   z-index: 20;
@@ -90,7 +90,7 @@ a {
   gap: 16px;
   flex-wrap: wrap;
   padding: 14px max(24px, calc((100% - 1120px) / 2));
-  background: rgba(248, 243, 246, 0.92);
+  background: rgba(18, 8, 22, 0.92);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -183,6 +183,7 @@ a {
 .btn-primary:hover {
   background: var(--ink);
   border-color: var(--ink);
+  color: #120816;
 }
 
 .btn-ghost {
@@ -192,24 +193,25 @@ a {
 
 .btn-ghost:hover {
   background: var(--ink);
-  color: #fff;
+  color: #120816;
 }
 
 .btn-light {
-  background: #fff;
-  border-color: #fff;
+  background: var(--soft);
+  border-color: var(--line);
   color: var(--ink);
 }
 
 .btn-light:hover {
-  background: var(--soft);
-  border-color: var(--soft);
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #120816;
 }
 
 .frame {
   position: relative;
   aspect-ratio: 16 / 9;
-  background: var(--ink);
+  background: var(--soft);
   border: 4px solid var(--ink);
   border-radius: 22px;
   box-shadow: 14px 14px 0 var(--berry);
@@ -314,11 +316,11 @@ a {
   gap: 12px 40px;
   align-items: start;
   padding: 30px 0;
-  border-top: 2px solid var(--ink);
+  border-top: 2px solid var(--line);
 }
 
 .project:last-child {
-  border-bottom: 2px solid var(--ink);
+  border-bottom: 2px solid var(--line);
 }
 
 .project h3 {
@@ -362,8 +364,8 @@ a {
 .tag {
   padding: 3px 12px;
   border-radius: 999px;
-  background: var(--ink);
-  color: #fff;
+  background: var(--line);
+  color: var(--ink);
   font-weight: 700;
   font-size: 0.85rem;
 }
@@ -391,7 +393,7 @@ a {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background: var(--soft);
+  background: var(--bg);
   border: 3px solid var(--berry);
 }
 
@@ -435,14 +437,27 @@ a {
 }
 
 .hello .btn-primary {
-  background: var(--ink);
-  border-color: var(--ink);
+  background: #120816;
+  border-color: #120816;
+  color: #fff;
 }
 
 .hello .btn-primary:hover {
   background: #fff;
   border-color: #fff;
-  color: var(--ink);
+  color: #120816;
+}
+
+.hello .btn-light {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+.hello .btn-light:hover {
+  background: #fff;
+  border-color: #fff;
+  color: #120816;
 }
 
 .hello :focus-visible {
@@ -451,9 +466,10 @@ a {
 
 .foot {
   padding-block: 32px;
-  background: var(--ink);
-  color: rgba(255, 255, 255, 0.8);
+  background: #0d0510;
+  color: rgba(247, 238, 248, 0.7);
   font-size: 0.95rem;
+  border-top: 1px solid var(--line);
 }
 
 .foot-inner {
